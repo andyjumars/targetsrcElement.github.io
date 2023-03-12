@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件代理</title>
+    <style type ="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        ul {
+            list-style:none;
+            overflow:hidden;
+            margin-top:80px;
+
+        }
+
+        ul li {
+            float:left;
+            width:100px;
+            height:30px;
+            text-align:center;
+            line-height:30px;
+            color:#fff;
+            background-color:#000;
+            margin:0 10px;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <ul id="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script type="text/javascript">
+        window.onload = function(){
+            /*
+            //常規方法實現
+            //1.獲取標籤
+            var lis = document.getElementsByTagName('li');
+            for(var i = 0; i < lis.length; i++){
+                lis[i].onmouseover = function(){
+                    this.style.backgroundColor = 'blue';
+                }
+                lis[i].onmouseout = function(){
+                    this.style.backgroundColor = 'red';
+                }
+            }
+            */
+
+            //事件代理的方式實現，事件實際目標對象來實現
+            //事件代理應用：事件實際目標對象target和srcElement屬性完成
+            //優點：提高性能與降低代碼複雜度
+            var box = document.getElementById('box');
+            box.onmouseover = function(e){
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                target.style.backgroundColor = 'blue';
+            }
+
+            box.onmouseout = function(e){
+                e = e || window.ebent;
+                var target = e.target || e.srcElement;
+                target.style.backgroundColor ='red';
+            }
+            
+
+        }
+    
+    </script>
+</body>
+</html>
